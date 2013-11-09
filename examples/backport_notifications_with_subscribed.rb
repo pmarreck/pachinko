@@ -14,7 +14,7 @@ class ActiveSupportNotificationsWithSubscribedPatch < Pachinko
     !ActiveSupport::Notifications.methods(false).include?(:subscribed)
   end
 
-  PATCH = ->{
+  patch do
     # monkeypatch "subscribed" method from Rails 4 into ActiveSupport::Notifications (only if it doesn't exist yet)
     module ::ActiveSupport
       module Notifications
@@ -28,7 +28,7 @@ class ActiveSupportNotificationsWithSubscribedPatch < Pachinko
         end
       end
     end
-  }
+  end
 
 end
 

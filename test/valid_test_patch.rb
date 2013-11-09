@@ -3,7 +3,9 @@
 class Pachinko
   class ValidTestPatch < Pachinko
 
-    PATCH = ->{ Pachinko::FabricatedClass = Class.new }
+    patch do
+      Pachinko::FabricatedClass = Class.new
+    end
 
     def name
       'valid_test_patch'

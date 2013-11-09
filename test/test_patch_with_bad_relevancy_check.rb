@@ -3,13 +3,13 @@
 class Pachinko
   class TestPatchWithBadRelevancyCheck < Pachinko
 
-    PATCH = ->{
+    patch do
       class String
         def completely_new_method
           "it's here"
         end
       end
-    }
+    end
 
     def name
       'Non-applicable test patch'

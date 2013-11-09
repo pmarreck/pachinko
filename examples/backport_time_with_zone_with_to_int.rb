@@ -29,7 +29,7 @@ class ActiveSupportTimeWithZoneWithToIntPatch < Pachinko
     end
   end
 
-  PATCH = ->{
+  patch do
     class ::Time
       class << self
         # Layers additional behavior on Time.at so that ActiveSupport::TimeWithZone and DateTime
@@ -45,7 +45,7 @@ class ActiveSupportTimeWithZoneWithToIntPatch < Pachinko
         alias_method :at, :at_with_coercion
       end
     end
-  }
+  end
 
 end
 

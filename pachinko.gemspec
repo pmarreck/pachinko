@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'pachinko'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2013-10-03'
   s.summary     = "A Ruby monkeypatch manager."
   s.description = "Pachinko is a Ruby monkeypatch manager tool attempting to control the unpredictable and difficult-to-troubleshoot regressions possible when monkeypatches run amok and unchecked in a medium to large Ruby codebase."

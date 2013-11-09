@@ -40,7 +40,7 @@ class FixExplicitNamesOnMultipleFileFieldsPatch < Pachinko
     ::Rails.version.to_s < '4.0' && RELEVANCY.call
   end
 
-  PATCH = ->{
+  patch do
     module ::ActionView
       module Helpers
         class InstanceTag
@@ -74,7 +74,7 @@ class FixExplicitNamesOnMultipleFileFieldsPatch < Pachinko
         end
       end
     end
-  }
+  end
 
 end
 FixExplicitNamesOnMultipleFileFieldsPatch.run(__FILE__==$PROGRAM_NAME)

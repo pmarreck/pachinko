@@ -76,11 +76,4 @@ class PachinkoTest < Test::Unit::TestCase
     end
   end
 
-  # Disabled this one until I can figure out how to test this outside of a Rails context...
-  # def test_patch_priority_order
-  #   outstanding_patches = Dir[File.join(Rails.root, 'lib', 'patches', '**', '*.rb')].sort_by(&Pachinko::PATCH_PRIORITY)
-  #   first_4_patch_files = outstanding_patches.map{|p| p.split('/').last }[0..3].sort
-  #   assert_equal %w[ array_utils.rb hash_utils.rb object_utils.rb string_utils.rb ], first_4_patch_files
-  # end
-
 end

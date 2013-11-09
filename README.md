@@ -5,7 +5,7 @@ Pachinko is a Ruby monkeypatch manager tool attempting to control the unpredicta
 
 If you have a lot of files in your `lib` directory which backport features, fix long-fixed bugs or apply other such behavior changes which are never being followed up on later on, via monkeypatching... This gem may be for you!
 
-The idea is, the Pachinko patch itself checks to see whether it even needs to be applied to your stack to begin with, every time it runs. In order to make that happen you sometimes have to come up with a clever on-the-fly "test for relevancy" but once you succeed in doing that, your patch will auto-expire and/or let you know when it's no longer relevant. Your test for relevancy should ideally check actual behavior and not just the presence/absence of a method or version number. That way it can PROVE it is still relevant (or not).
+The idea is, the Pachinko patch itself checks to see whether it even needs to be applied to your app stack to begin with, every time it runs. In order to make that happen you have to come up with a somewhat clever on-the-fly "test for relevancy" but once you succeed in doing that, your patch will auto-expire and/or let you know when it's no longer relevant. Your test for relevancy should ideally check actual behavior and not just the presence/absence of a method or version number. That way it can PROVE it is still relevant (or not).
 
 Pachinko will let you know 3 types of things right in the console when your stack loads:
 
@@ -24,7 +24,6 @@ If this gem does help you,
 1. Totally awesome, let me know! peter@marreck.com
 2. It's probably a hint that you should consider breaking up your app code somehow, architecturally. ;)
 
-Oh, one last thing, I LOVE PULL REQUESTS. ;)
-
 Happy sane monkeypatchery,
+
 -Peter

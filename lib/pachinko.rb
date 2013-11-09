@@ -12,11 +12,11 @@ require 'ansi'
 #   def relevant?
 #     !defined?(FabricatedClass)
 #   end
-#   # PATCH: A constant which contains a lambda which applies the patch
+#   # patch: a method which you pass a block which applies the patch
 #   # Reason for this is that you can't reopen classes in methods...
-#   PATCH = ->{
+#   patch do
 #     class ::FabricatedClass; end
-#   }
+#   end
 # end
 
 class Pachinko
@@ -37,28 +37,32 @@ class Pachinko
 
   class << self
     attr_accessor :last_patch
+    attr_reader :patch_block
+
+    def patch(&block)
+      @patch_block = block
+    end
 
     def run(*args)
       new.run(*args)
     end
-    alias_method :run_if_needed, :run
+
     def development_mode?
-      defined?(Rails) && defined?(::Rails.env) && ::Rails.env.development?
+      defined?(::Rails) && defined?(::Rails.env) && ::Rails.env.development?
     end
+
     def test_mode?
-      if defined?(Rails) && defined?(::Rails.env)
+      if defined?(::Rails) && defined?(::Rails.env)
         ::Rails.env.test?
       else
         true
       end
     end
+
     def last_results
       last_patch.results
     end
   end
-
-  # Allows you to prioritize certain patch files first, such as core object patches
-  PATCH_PRIORITY = lambda { |p| p =~ /\/(hash|string|array|object)/i ? ' ' : p }
 
   def name
     raise NotImplementedError, "Your patch doesn't define a 'name' method... please override in your patch class"
@@ -109,7 +113,7 @@ class Pachinko
   private
   def apply
     begin
-      self.class::PATCH.call
+      self.class.patch_block.call
     rescue NameError => e
       e.message << "\nNOTE TO PATCH DEVS: If you are writing a patch, it is possible that you just have to root-namespace any relevant classes in your PATCH block with a double colon (::) in front, to avoid this error!"
       raise e
